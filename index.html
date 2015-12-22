@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+form {
+  display: inline-block;
+    margin-left: auto;
+  margin-right: auto;
+  /*float: right;*/
+
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+  appearance: none;
+  background-color: #2C3E50;
+  border-radius: 2px;
+  border: 0;
+  color: #fff;
+  opacity: 0.9;
+  cursor: pointer;
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-size: 0.9em;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.72em 1.3em;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+  user-select: none;
+  display: inline-block;
+  vertical-align: middle;  
+  white-space: nowrap; }
+  /* line 21, /Users/sahilchinoy/Sites/grades/repo/ucbgradedists/static/css/base/_buttons.scss */
+  button:hover, button:focus, input[type="button"]:hover, input[type="button"]:focus, input[type="reset"]:hover, input[type="reset"]:focus, input[type="submit"]:hover, input[type="submit"]:focus {
+    background-color: #2C3E50;
+    opacity: 1;
+    color: #fff; }
+  /* line 27, /Users/sahilchinoy/Sites/grades/repo/ucbgradedists/static/css/base/_buttons.scss */
+  button:disabled, input[type="button"]:disabled, input[type="reset"]:disabled, input[type="submit"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.5; }
+    /* line 31, /Users/sahilchinoy/Sites/grades/repo/ucbgradedists/static/css/base/_buttons.scss */
+  button:disabled:hover, input[type="button"]:disabled:hover, input[type="reset"]:disabled:hover, input[type="submit"]:disabled:hover {
+      background-color: #2C3E50; }
+
+.q0-9 { fill:rgb(247,251,255); }
+.q1-9 { fill:rgb(222,235,247); }
+.q2-9 { fill:rgb(198,219,239); }
+.q3-9 { fill:rgb(158,202,225); }
+.q4-9 { fill:rgb(107,174,214); }
+.q5-9 { fill:rgb(66,146,198); }
+.q6-9 { fill:rgb(33,113,181); }
+.q7-9 { fill:rgb(8,81,156); }
+.q8-9 { fill:rgb(8,48,107); }
+
+#the-basics, #bar-the-basics {
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin-right: auto;
+  margin-left: auto;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  vertical-align: middle;
+  padding: 2em 0.5em;
+  /*padding: 1em;*/
+}
+
+.typeahead,
+.tt-query,
+.tt-hint {
+  display: inline-block;
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  width: 396px;
+  height: 1em;
+  padding: .8em;
+  font-size: 0.9em;
+    vertical-align: middle;
+  line-height: 1;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+  outline: none;
+}
+
+.typeahead {
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  background-color: #fff;
+    vertical-align: middle;
+}
+
+.typeahead:focus {
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  border: 1px solid #2C3E50;
+    vertical-align: middle;
+}
+
+</style>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="assets/style.css" />
+<script src="assets/d3.v3.min.js"></script>
+<script src="assets/jquery.min.js"></script>
+<script src="assets/d3pie.min.js"></script>
+<script src="assets/d3.tip.v0.6.3.js"></script>
+<script src="assets/queue.v1.min.js"></script>
+<script src="assets/d3.chart.js"></script>
+<script src="assets/typeahead.bundle.js"></script>
+<script src="assets/topojson.v1.min.js"></script>
+<script src="assets/d3.compose-all.js"></script>
+<script src="assets/underscore.js"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="title">The Stickiness of Restaurant Lists</div><p><hr><br>
+   
+    <p>Eater has a <a href="http://www.eater.com/2015/12/2/9835720/roadfood-jane-stern-michael-stern-history">great article</a> on a Yale-matriculated pair, Jane and Michael Stern, who traveled the United States reviewing regional and authentic food before the era of the Fieri. It's an interesting read, and it talks a lot about how food is viewed in the United States and what we value. One of my favorite passages is at the end,
+
+    <blockquote><p>"We see the nation's diet very much like its language," Jane and Michael write in The Lexicon of Real American Food, their 2011 guide to the strange words and beautiful phrases that American cuisine has introduced to the world, from Biloxi bacon to hanky panky sausages. The culinary idioverse of the United States is, "sometimes vexing for its vulgarity and its disdain of high-minded principles, but endlessly, endearingly exuberant."
+    </p><p>
+    America is a land of y'alls and yousguyses, of fresh ingredients and canned staples sitting side-by-side. It is, as the Sterns have chronicled, dynamically messy, and there's nothing more singularly wonderful than this patchworked quilt of flavors and textures, threaded with the stories of the waves upon waves of immigrants that make up our dining horizon. For those who look for the glory in the edible chaos, Jane and Michael Stern stand as a reminder that a cuisine that's rough around the edges is nothing short of beautiful.</p></blockquote>
+
+    <p>Their <a href="http://www.roadfood.com/">website</a>, based off of their books and travels, is an interesting list of restaurants known for their authenticity and for providing regional foods. My experience though has been that this definition of 'regional' has come at the expense of the 'immigrant America' talked about in the article. There are few ethnic food joints in the list, which favors traditional over new. I would even go as far as to say that some of the restaurants listed are vastly over-rated and over-priced.</p>
+
+    <p>What I also find disappointing is how similar all of these lists are to each other. In Diners, Drive-ins, and Dives, Guy Fieri visits many of the same restaurants from roadfood.com. In a city as large as Los Angeles it's baffling how these are the only restaurants selected, every time. My own experience shows that these places also aren't the best (subjectively speaking, of course).</p>
+
+    <p>Take for example Pie 'n Burger in Pasadena. A trip there is equivalent to paying quadruple the price for an In-and-Out burger (which surprisingly and thankfully is also listed by the Sterns). Pie 'n Burger is often a member of LA’s best burger lists and has a rich history. As a Pasadena native though, it's incredibly disappointing from an objective standpoint, and I wonder if these lists are just sticky, nostalgic. Pie 'n Burger takes only cash. It has 3.5 stars on Yelp.</p>
+
+    <p>How many other places like Pie 'n Burger are there? I wanted to break down their list and compare the restaurants based on their performance on Yelp. I don't think I have time in this segment for a detailed analysis of cuisine and how that varies, but the data is there, so that's a topic for another procrastination session. For this analysis, two main criteria stood out, the rating and the number of reviews. On roadfood's list there are 1,842 restaurants with an average rating of 3.65 with an average of 254.23 reviews per restaurant out of a total of 468,294 total reviews. Below is arguably the most important descriptor, the rating. You can search by state to see a chart of the distribution for that state.</p>
+    
+    <div class="firstinput">
+    <form id="bar_res_form">
+      <div id="bar-the-basics">
+        <input class="typeahead" type="text" placeholder="State">
+      </div>
+      <button class="btn" type="submit">Submit</button><br>
+    </form>
+    </div>
+    </div>
+    <!-- <div id="restaurantinfo"></div> -->
+    <div class="barcharts">
+    <div id="barchart1"></div>
+    <div id="barchart2"></div>
+    </div>
+    <div class="container">
+    <p>s
+      The above charts don't make it easy to compare the distributions of states though, so I made the following graph, reminiscent of this <a href="http://www.nytimes.com/2015/12/13/opinion/campaign-stops/all-politicians-lie-some-lie-more-than-others.html">New York Times graphic</a> on 2016 candidates and their truthfulness. <br>
+    </p>
+    <div class="breakdowncontainer">
+    <div id="ratingsbreakdown"></div>
+    </div><br>
+    <p>I've sorted the states by the sum of their 4.5 and 5 star-rated restaurants. This gives one perspective, but perhaps another sorting algorithm would have been to just compare the five-star restaurants, or the number below three stars. One immediately sees that some states have a weird looking distribution... this is because for a few states there are few data points. The number of restaurants per state is an important metric. We can compare the number of people in each state by its population and how many restaurants there are per person. Below are the states ordered by how many restaurants they have, and you can hover over them to see the exact figure.</p></div><br>
+
+    <div class="squarecontainer"><div id="squares"></div>  </div>  
+    <div class="container">
+    <p>And these are the states ordered by population:</p></div><br>
+    <div class="squarecontainer"><div id="squares-pop"></div>   </div> 
+
+    <div class="container">
+    <p>It's difficult to actually figure out anything from those two figures, so let's combine them. We know that there are about <a href="http://www.census.gov/popclock/">322,363,000</a> people in the United States and 1,842 roadfood restaurants. This gives us an average of one restaurant per 175,007 people. Below is a graph of the average number of people per restaurant, with the national average the dividing line. You can hover over each bar to learn which state it represents.</p><br>
+    <div class="squarecontainer"><div id="squares-barcompare"></div></div>
+    <p>
+    Kansas barely registers, but it's there and is the closest to the national average. Looking at the more densely restaurant populated states, it seems as though many of them are in New England (Connecticut, Maine, and Vermont are the top three). Is that the case?</p>
+    <div id="ratingmap2"></div>
+    <!-- map -->
+    <p>The explanation for this is that the Sterns are from the Nutmeg state (Connecticut), and it's easier to visit the restaurants that are closest to them. The larger states, such as California, New York, and Texas still finish strong in the total number of restaurants.</p>
+    <p>Let's get back to the original aim of figuring out the ratings of these restaurants. The state with the highest average rating is Hawaii, with an average rating of about 4.14 stars, and the state with the lowest average is Alaska, with only 2.25 stars. We can see this in the map below (hover over each state for the average rating). Most states have a pretty decent average, which is why I didn't separate the states by quantiles this time.</p>
+
+    <div id="ratingmap"></div>
+    <p>We can also take a look at the number of reviews each restaurant has. A large part of a restaurant being authentic is how hole-in-the-wall it is. Of course, as it gets media traction this reputation and description diminishes. And becoming popular isn't necessarily a bad thing either! The line graph below represents 1,842 restaurants. If you mouse over the chart, it'll be divided by state, so one can see the relative number of restaurants by state (as well as the average number of reviews).</p>
+    </div>
+    <div id="linegraph1"></div>
+    <div class="container">
+    <p>
+    The states with the highest average number of reviews are Washington DC with 1,227 reviews (DC is ignored for most of the rest of the analysis), Hawaii with 1,004 reviews, and then finally California with an average of 994 reviews. North Dakota in contrast only had an average of 7 Yelp reviews per restaurant.
+    </p>
+    <p>Combining these two we have a scatter-plot. I wanted to investigate whether the two were correlated, whether a hole-in-the-wall restaurant (fewer reviews) tended to have a higher rating, and whether an over-rated restaurant (many reviews) tended to have a lower rating. Making the opacity low for each restaurant and then comparing the patches was supposed to lead to an answer.</p><br>
+    <div id="scatterplot1"></div><br>
+    <p>There actually isn't much of a correlation, but it's awesome that <a href="http://biritecreamery.com/">Bi-Rite Creamery</a> has so many reviews and yet still maintains a 4.5 star rating.</p>
+
+    <p>So out of all these suggested restaurants, I also think that Roadfood.com ignored some otherwise highly recommended places, like Chez Panisse. I personally haven't eaten at Chez, but it's known for starting California cuisine and is as important of a regional restaurant if any. Another snub is Cheeseboard, a Berkeley and Bay Area trend-setter. The point of roadfood.com though isn't to simply mimic the Michelin list, but I can't seem to figure out their system.</p>
+ 
+    <p>All of this really just brings me to my own recommendations for Berkeley. These were chosen because they had interesting flavors and a certain charm. There are a lot of great restaurants in my rotation, and a bunch of places excellent for lunch, but the ones selected below are for visitors in the area. I could list more, but here are my current top six (all vegetarian-friendly!):</p>
+
+    <ol>
+    <li><a href="http://easycreole.com/">Easy Creole</a> — An excellent creole place, and parent-approved! I'd make sure to try all of their hot sauces while there. You really can't go wrong with any of the options.</li>
+    <li><a href="http://www.rangoonsuperstars.com/">Rangoon Superstar</a> — Burmese food is nice because it's a mix between Indian, Chinese, and Thai. That's not to say that Burma (Myanmar) doesn't have it's own cuisine! My last two experiences with this restaurant have been lackluster, but I still return for the possibility of a repeat of my first taste of their samosa soup.</li>
+    <li><a href="http://cheeseboardcollective.coop/pizza">Cheeseboard</a> / <a href="http://sliverpizzeria.com/">Sliver</a> — I’m sure somebody would be upset that I lumped these two together. Both are pizza shops with a special daily, vegetarian pizza.</li>
+    <li><a href="http://www.yelp.com/biz/makris-cafe-berkeley">Makris Cafe</a> — Now we get to the hole-in-the-wall places. I enjoy Makris because it's a Korean-Breakfast fusion joint. Their bulgogi burrito is probably the best in the world, but probably only because it's the only one that exists.</li>
+    <li><a href="http://www.namastepizza.com/">Namaste Pizza</a> — Indian pizza, my personal favorite is the aloo gobi.</li>
+    <li><a href="http://www.bleeckerbistro.com/">Ann's (now Bleeker Bistro)</a> — This will forever be Ann's to me. The homefries here are the best I've ever had.</li></ol>
+    <p>You can also check out the Yelp rating of any of the restaurants in the roadfood list below.</p>
+
+    <div class="firstinput">
+    <form id="res_form">
+      <div id="the-basics">
+        <input class="typeahead" type="text" name=rest placeholder="Roadfood-reviewed Restaurants">
+      </div>
+      <button class="btn" type="submit">Submit</button>
+    </form></div>
+    <div id="restaurantinfo"></div>
+
+
+		<div class="information">
+    <br><hr>
+    <h1>Notes on this Analysis</h1>
+    <p>
+    In comparison to my previous projects, this one required a bit more work on the programming side. I started off with the list of the restaurants that roadfood recommends (they provide that list <a href="http://www.roadfood.com/Insider/Maps/">here</a>, conveniently available in .csv format). Then I used the <a href="https://www.yelp.com/developers/documentation/v2/overview">Yelp API</a> to try to find the Yelp rating of each one. Sometimes the API found it, but sometimes there were some hiccups, and I had to do a few things manually.</p>
+    <p>The roadfood list had come with a few details, albeit in a weird format, and so I had to use some regex to clean it up. Once I did, I had the lat/lon, the phone number, and the address of the restaurant, in addition to the name. I queried the Yelp API using the name and street address, and matched the restaurant if had it had the same phone number or the same name. I also had to train the program a little bit, based off of the first hundred or so results. One change was that I changed all instances of "Bar-B-Q" to just "barbeque." Another was for the names where I compared the versions without spaces (there was a case where it was "R D's drive-in" versus "RD's drive-in"). At this point I was hitting about 10% imperfect matches, but most were actually false negatives. I even discovered a typo in the phone numbers, but I have no idea which one of the two was actually accurate. </p>
+    <p>It would have been a lot of work to correct each mistake and hope that it also solved future problems, so I decided to implement a command-line question that asked me to manually confirm each time the Yelp API didn't have an exact match. This would increase the amount of work for me, but it just meant sitting at the terminal for a bit (this part actually was a lot more manual than I would have liked, and also took longer than expected). I didn't manually look up the restaurants on Yelp though, that would have been too much work. Through my manual process, I had to exclude 73 'bad' restaurants, or restaurants that didn't have a match on Yelp. I also had to exclude Canadian restaurants unfortunately. I manually approved about 80 or so restaurants, so in total my Python script found matches 92% of the time.
+    <p>Once I had the data, I used d3.js to create the charts, as usual. I utilized some useful new libraries to help me. One of these was a suggestion engine for my input boxes called <a href="https://twitter.github.io/typeahead.js/">typeahead.js</a>. Another was <a href="http://underscorejs.org/">underscore.js</a>, which was useful for finding specific items and sorting. Oftentimes throwing something into <a href="www.import.io">import.io</a> speeds up the process of scraping a website. This only works for very simple pages though, and I wouldn't recommend their desktop application. For those looking for a good tutorial for learning d3.js, I used <a href="http://alignedleft.com/tutorials/d3">Scott Murray's</a> for reference throughout this project.
+    </p>
+    <p>This project was really to help me practice my d3.js skills, so I realize that a few of the visualizations are useless or inelegant. Building off on this, I'll spend more time on the design portion of the project, instead of building any and all visualizations. I wanted to add on to this even more, actually, but I felt that it was time to move on. For those of you interested in the data-set, please let me know. Some suggestions for visualizations are doing a <a href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test">K-S test</a>, plotting individuals restaurants (the latitude and longitude are given), and adding box-and-whisker plots to the scatter plot. </p>
+    <p>This website looks best on the screen I used to code it (Chrome + Yosemite + 13"). Please send all comments / questions / critiques / suggestions to jmahabal@berkeley.edu. You can check out my Python code <a href="comparestars.py">here</a>. Thanks for reading!
+    </p>  
+    <div class="bottombreak"></div>
+    </div>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+var mapheight = 450;
+var mapwidth = 700;
+
+var height1 = 250;
+var width1 = 550;
+var barPadding = 1; 
+
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = width1 - margin.left - margin.right,
+    height = height1 - margin.top - margin.bottom;
+
+var svg = d3.select("#barchart1").append("svg")
+    .attr("align", "center")
+    .attr("width", width1/1.5)
+    .attr("fill", "#2C3E50")
+    .attr("height", height1);
+
+var svgbar2 = d3.select("#barchart2").append("svg")
+    .attr("align", "center")
+    .attr("width", width1/1.5)
+    .attr("fill", "#2C3E50")
+    .attr("height", height1);
+
+var svg2 = d3.select("#linegraph1").append("svg")
+    .attr("width", width*1.5 + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom + 30)
+    .attr("display", "block")
+    .attr("margin", "auto")
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var svg3 = d3.select("#scatterplot1")
+        .append("svg")
+        .attr("width", width1+50)
+        .attr("height", height+50);
+
+var svgSquares = d3.select("#squares")
+        .append("svg").attr("align", "center")
+        .attr("width", width*2)
+        .attr("height", height/2.5);
+
+var svgSquaresPop = d3.select("#squares-pop")
+        .append("svg").attr("align", "center")
+        .attr("width", width*2)
+        .attr("height", height/2);
+
+var svgSquaresBar = d3.select("#squares-barcompare").append("svg")
+    .attr("align", "center")
+    .attr("width", mapwidth)
+    .attr("fill", "#2C3E50")
+    .attr("height", height1*1.5);
+
+var svgRatingsBreakdown = d3.select("#ratingsbreakdown")
+    .append("svg")
+    .attr("align", "center")
+    .attr("width", mapwidth*0.6)
+    .attr("height", height1*3);
+
+var data = "restaurants.json";
+var map = "assets/us.json";
+var usstates = "assets/usstates.csv";
+var usstatespop = "assets/statespop.csv";
+
+$(function(){
+	queue()
+		.defer(d3.json, data)
+    .defer(d3.json, map)
+    .defer(d3.csv, usstates)
+    .defer(d3.csv, usstatespop)
+	.await(dataDidLoad);
+});
+
+function dataDidLoad(error, data, map, usstates, usstatespop) {
+
+  usstatesdict = {};
+  for (i in usstates) {
+    // console.log(usstates);
+    usstatesdict[usstates[i].code+"toname"] = usstates[i].name;
+    usstatesdict[usstates[i].code] = usstates[i].id;
+    usstatesdict[usstates[i].name+"tocode"] = usstates[i].code;
+    usstatesdict[usstates[i].id] = usstates[i].code;
+  }
+
+  var color = "#2C3E50";
+
+  // console.log(data);
+	createBarChart1(data);
+  // createBarChartState(data, usstates, "");
+  createLineGraph1(data, usstatespop);
+  calculateAverageValues(data);
+  createScatterPlot1(data);
+  createRatingMap1(data, map, usstates);
+  createStateSquares(data, usstatespop);
+  createStateSquaresPop(data, usstatespop);
+  createStateSquaresBar(data, usstatespop);
+  createRatingsBreakdown(data, usstatespop);
+  createRatingMap2(data, map, usstates, usstatespop);
+  //restaurantAlert(data);
+
+  var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches, substringRegex;
+
+    // an array that will be populated with substring matches
+    matches = [];
+
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str)) {
+        matches.push(str);
+      }
+    });
+
+    cb(matches);
+    };
+  };
+
+  var restaurants = [];
+  for (i in data) {
+    restaurants.push(data[i].name);
+  };
+
+  $('#the-basics .typeahead').typeahead({
+    hint: false,
+    highlight: true,
+    minLength: 1
+  },
+  {
+    name: 'restaurants',
+    source: substringMatcher(restaurants)
+  });
+
+  var states = [];
+  // console.log(usstates);
+  for (i in usstates) {
+    states.push(usstates[i].name);
+  };
+  // console.log(states);
+
+  $('#bar-the-basics .typeahead').typeahead({
+    hint: false,
+    highlight: true,
+    minLength: 1
+  },
+  {
+    name: 'states',
+    source: substringMatcher(states)
+  });
+
+  var i = 0;
+
+  $( "#res_form" ).submit(function( event ) {
+    deleteRestaurantAlert();
+    //alert( "Handler for .submit() called." );
+    event.preventDefault();
+    var j = $("input:eq(1)").val();
+    // console.log(j);
+    restaurantAlert(data, j);
+  });
+
+  $( "#bar_res_form" ).submit(function( event ) {
+    // deleteBarChartState();
+    //alert( "Handler for .submit() called." );
+    event.preventDefault();
+    var j = $("input:first").val();
+    // console.log(j);
+    createBarChartState(data, usstates, j);
+    //restaurantAlert(data, j);
+  });
+
+};
+
+function deleteRestaurantAlert() {
+  d3.select("#restaurantinfo").select("svg")
+  .remove();
+}
+
+function deleteBarChartState() {
+  // console.log(d3.selectAll(".rect-state"));
+  d3.selectAll(".rect-state").remove();
+}
+
+function restaurantAlert(data, j){
+
+  var restaurants = [];
+  for (i in data) {
+    restaurants.push(data[i].name);
+  };
+
+  // console.log(_.find(data, function(res){ return res.name === j;}));
+  // console.log(_.find(restaurants, function(res){ return res === j;}));
+
+  // console.log(j);
+
+  if (_.find(restaurants, function(res){ return res === j;})) {
+  d3.select("#restaurantinfo").append("svg")    
+    .attr("height", "1.5em")
+     .attr("width", "100%")
+    .selectAll("text")
+    .data(j[0])
+    .enter()
+    .append("text")
+    .text(function() {
+      // { console.log("hi"); 
+        return j+" (" +usstatesdict[_.find(data, function(res){ return res.name === j;}).address.slice(-2)+"toname"]+") has an average rating of "+_.find(data, function(res){ return res.name === j;}).rating+" out of "+numberWithCommas(_.find(data, function(res){ return res.name === j;}).review_count)+" reviews."; 
+  })
+    .attr("y", "1em")
+    .style("text-anchor", "middle")
+    .attr("x", "50%");
+  } else {
+    d3.select("#restaurantinfo").append("svg")    
+    .attr("height", "1.5em") .attr("width", "100%")
+
+    .selectAll("text")
+    .data(j[0])
+    .enter()
+    .append("text")
+    .text("Not a valid restaurant.")
+    .style("text-anchor", "middle")
+    .attr("y", "1em")
+    .attr("x", "50%");
+  }
+
+}
+
+function createRatingsBreakdown(data, usstatespop){
+
+  // console.log(data);
+
+  var listofstates = ["Alaska", "Delaware", "South Dakota", "North Dakota", "Iowa", "Hawaii", "Kansas", "Maine", "Michigan", "Idaho", "New Hampshire", "Arkansas", "Nevada", "Kentucky", "Virginia", "Louisiana", "Wyoming", "Ohio", "Mississippi", "Oregon", "South Carolina", "Pennsylvania", "Massachusetts", "Minnesota", "Tennessee", "Colorado", "Vermont", "West Virginia", "Maryland", "Wisconsin", "Rhode Island", "Arizona", "Connecticut", "Nebraska", "New Jersey", "Montana", "New Mexico", "Indiana", "Texas", "New York", "Alabama", "Florida", "Illinois", "North Carolina", "Georgia", "Missouri", "Oklahoma", "California", "Washington", "Utah"];
+
+  // var listofstates = [];
+  // for (i in usstatespop){
+  //   listofstates.push(usstatespop[i].state_content);
+  // };
+  var listofratings = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, "total"]
+  // console.log(listofratings);
+  var breakdownDict = {};
+  for (i in listofstates) {
+    breakdownDict[listofstates[i]] = {};
+    for (j in listofratings) {
+      breakdownDict[listofstates[i]][listofratings[j]] = 0;
+    }
+  }
+
+  // console.log(breakdownDict);
+
+  for (i in data) {
+    // console.log(breakdownDict[usstatesdict[data[i].address.slice(-2)+"toname"]]);
+    if (breakdownDict[usstatesdict[data[i].address.slice(-2)+"toname"]] != null){
+      if (breakdownDict[usstatesdict[data[i].address.slice(-2)+"toname"]][data[i].rating] != null){
+          breakdownDict[usstatesdict[data[i].address.slice(-2)+"toname"]][data[i].rating] += 1;
+        }
+      } 
+    }
+
+  // build a total for each state
+  for (i in breakdownDict) {
+    // console.log(breakdownDict[i]);
+    var k = 0;
+    for (j in breakdownDict[i]){
+      k += breakdownDict[i][j];
+    };
+    breakdownDict[i]["total"] = k;
+  }
+
+  breakdownRectArray = [];
+  // to append as data
+  // needs three things: percentage, state, rating
+  for (var i in breakdownDict){
+    // console.log(breakdownDict[i]);
+    // console.log(_.size(breakdownDict[i]));
+    for (var j = 0; j < 12; j++){
+      // console.log(j);
+      if ((j-1)/2 >= 0){
+        breakdownRectArray.push({"percentage": breakdownDict[i][(j-1)/2]/breakdownDict[i].total, "state": i, "rating": (j-1)/2});
+      }
+    }
+  }
+
+  // console.log(breakdownRectArray);
+
+  var breakdownXScale = d3.scale.linear()
+    .range([0, mapwidth*0.6])
+    .domain([0, 1]);
+
+  var breakdownYScale = d3.scale.ordinal()
+    .rangeRoundBands([0, height1*3], 1, 0.1)
+    .domain(listofstates);
+
+  var breakdownYAxis = d3.svg.axis()
+                .scale(breakdownYScale)
+                .orient("left")
+                .tickSize(0)
+                .tickPadding(5)
+                .ticks(50);
+
+  var breakdownGraph = svgRatingsBreakdown.selectAll("rect")
+    .data(breakdownRectArray).enter()
+  .append("rect")
+  .attr("y", function(d, i){
+    // console.log(i);
+    return breakdownYScale(d.state);
+  })
+  .attr("x", function(d, i){
+    // console.log(d, i);
+    // console.log(breakdownRectArray[0]);
+    var k1 = 0;
+    var k2 = 0;
+    var k3 = 0;
+    while (k3 < d.rating){
+      k1 += breakdownXScale(breakdownRectArray[i-k2-1].percentage);
+      k2 += 1;
+      k3 += 0.5;
+    }
+    // console.log(k1);
+    return k1;
+  })
+  .attr("height", function(d, i){
+    return 10;
+  })
+  .attr("width", function(d, i){
+    // return 100;
+    if (d.rating != "total"){
+      return breakdownXScale(d.percentage);
+    } else {
+      return 0;
+    }
+  })
+  // .attr("opacity", 0.4)
+  .attr("class", function(d, i){
+    if (d.rating != parseInt(d.rating, 10)){
+      // console.log(("rating"+d.rating).toString().replace(".", ""));
+      return ("rating"+d.rating).toString().replace(".", "");
+    } else {
+      // console.log(("rating"+d.rating).toString());
+      return ("rating"+d.rating).toString();
+    }
+  });
+
+  svgRatingsBreakdown.append("g")
+      .attr("class", "axis")
+      // .style("vertical-align", "middle")
+      .attr("transform", "translate(0, 5)")
+      .call(breakdownYAxis);
+
+  var ratingskey = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+  svgRatingsBreakdown.selectAll("rect-legend")
+    .data(ratingskey).enter()
+  .append("rect")
+  .attr("x", function(d, i){
+    // console.log(d);
+    return i*mapwidth*0.3/7;
+  })
+  .attr("y", function(d, i){
+    return 0;
+  })
+  .attr("width", function(d, i){
+    // console.log(i);
+    // if (i != 10){
+     return mapwidth*0.3/7;
+    // }
+  })
+  .attr("height", function(d, i){
+    return 10;
+  })
+  .attr("class", function(d, i){
+    // console.log(("rating"+d).replace(".",""));
+    return ("rating"+d).replace(".","");
+  }).attr("align", "center")
+  .attr("transform", "translate("+(mapwidth*0.6/2 - (mapwidth*0.3/7*5.5))+", -20)");
+
+svgRatingsBreakdown.selectAll("text-legend")
+    .data(ratingskey).enter()
+  .append("text")
+  .attr("x", function(d, i){
+    // console.log(d);
+    return i*mapwidth*0.3/7+mapwidth*0.3/14;
+  })
+  .attr("y", function(d, i){
+    return 0;
+  })
+  .attr("transform", "translate("+(mapwidth*0.6/2 - (mapwidth*0.3/7*5.5))+", -24)")
+  .attr("text-anchor", "middle")
+  .html(function(d){ return d; });
+
+}
+
+function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+
+function createStateSquaresBar(data, usstatespop) {
+
+  // console.log(usstatespop);
+
+  var usstatessquares = {};
+  for (i in data) {
+    if (usstatessquares[data[i].address.slice(-2)] == null && usstatesdict[data[i].address.slice(-2)] != null && data[i].address.slice(-2) != "DC") {
+      usstatessquares[data[i].address.slice(-2)] = 1;
+    } else if (usstatesdict[data[i].address.slice(-2)] != null && data[i].address.slice(-2) != "DC"){
+      usstatessquares[data[i].address.slice(-2)] += 1;
+    };
+  };
+
+  var populationdict = {};
+  for (i in usstatespop) {
+    populationdict[usstatespop[i].state_content] = usstatespop[i].population;
+  };
+
+  // console.log(usstatessquares);
+
+  var dividedpop = {};
+  for (var term in usstatessquares) {
+    dividedpop[term] = populationdict[usstatesdict[term+"toname"]] / usstatessquares[term];
+  };
+
+  // console.log(dividedpop);
+
+  var squaresortable = [];
+  for (var term in dividedpop){
+        squaresortable.push([dividedpop[term], term])
+  };
+  squaresortable.sort(function(a, b) {return a[0] - b[0]});
+
+  // console.log(squaresortable);
+
+  var domainarrayx = [];
+  for (i in squaresortable){
+    domainarrayx.push(squaresortable[i][1]);
+  };
+
+  var scaleymax = d3.max(squaresortable, function(d) { return d[0]; });
+  var scaleymin = d3.min(squaresortable, function(d) { return d[0]; });
+
+  var scaleymaxdiff = d3.max(squaresortable, function(d) { return Math.abs(d[0] - 175007); });
+  var scaleymindiff = d3.min(squaresortable, function(d) { return Math.abs(d[0] - 175007); });
+
+  // console.log(scaleymindiff);
+  // console.log(scaleymaxdiff);
+
+  var squaresScaleBar = d3.scale.ordinal()
+    .domain(domainarrayx)
+    .rangeRoundBands([0, mapwidth], 0.1);
+
+  var squaresScaleBary = d3.scale.linear()
+    .domain([scaleymindiff, scaleymaxdiff])
+    .range([0, height1]);
+
+  var squaresXAxis = d3.svg.axis()
+                  .scale(squaresScaleBar)
+                  .orient("bottom")
+                  .tickSize(0)
+                  .tickPadding(6)
+                  .ticks(50);
+
+
+
+  var colorarray = ["#2ecc71", "#31c27b", "#35ad88", "#36a38b", "#378e8b", "#378084", "#34616f", "#325465", "#2f495a", "#2c3e50"].reverse();
+
+  // var squarecolorxscale = d3.min(d3.entries(dividedpop));
+  // console.log(scaleymax);
+  var squaresScaleColor = d3.scale.quantize()
+    .domain([0, scaleymax])
+    // .range([0, 1]);
+    .range(d3.range(10).map(function(i) { return colorarray[i] }));
+
+  var squareselect = svgSquaresBar.selectAll("rect")
+    .data(squaresortable)
+  .enter()
+  .append("rect")
+  .attr("y", function(d, i) {
+    // console.log(Math.abs(squaresScaleBary(d[0] - 175007)));
+    // return squaresScaleBary(d[0]);
+      if (d[0] - 175007 <= 0) {
+        return height1/2 - squaresScaleBary(Math.abs(d[0] - 175007));
+      } else {
+        return height1/2;
+      }
+    })
+    .attr("x", function(d, i) {
+      // console.log(squaresScaleBar(d[1]));
+      return squaresScaleBar(d[1]);
+    })
+    .attr("height", function(d, i) {
+      // return height1/8 + squaresScaleBary(d[0]);
+      // if (d[0] - 175007 <= 0) {
+        return (squaresScaleBary(Math.abs(d[0] - 175007)));
+      // } else {
+      //   return Math.abs(squaresScaleBary(d[0] - 175007));
+      // }
+    })
+    .attr("width", function(d) {
+        return 10; //Just the data value
+    })
+    .attr("fill", function(d, i) {
+        return squaresScaleColor(d[0]); //Just the data value
+    })
+    .on("mouseover", function(d){
+      // console.log(d);
+      var barstateid = ".sqstate_"+d[1];
+
+      svgSquaresBar.selectAll(barstateid)
+      .attr("stroke", "#3498db")
+      .attr("stroke-opacity", 0.3)
+      .attr("opacity", 0.2)
+      .attr("fill", "#3498db");
+
+      svgSquaresBar.selectAll(".squarestext")
+       .html( function() {
+          // if (Math.round(175007/d[0]*100)/100 > 1) {
+            return usstatesdict[d[1]+"toname"] + " has one reviewed restaurant per "+numberWithCommas(Math.round(d[0]))+" people, or "+Math.round(175007/d[0]*100)/100+" times the national average."; 
+       }
+        )
+        .attr("text-align", "center");
+      })
+    .on("mouseout", function(d){
+      var barstateid = ".sqstate_"+d[1];
+      svgSquaresBar.selectAll(barstateid)
+        .attr("fill", "white")
+        .attr("stroke", "white");
+      svgSquaresBar.selectAll(".squarestext")
+        .html("");
+    });
+
+// svgSquaresBar.append("g")
+//       .attr("class", "axis")
+//       .attr("transform", "translate(-2, "+height+")")
+//       .call(squaresXAxis);
+
+  var squaresScaleBaryAxis = d3.scale.linear()
+    .domain([scaleymindiff, scaleymaxdiff+175007])
+    .range([0, height1+squaresScaleBary(175007)]);
+
+  var squaresYAxis = d3.svg.axis()
+                  .scale(squaresScaleBaryAxis)
+                  .orient("left")
+                  .tickSize(6)
+                  .tickPadding(6)
+                  .ticks(15);
+
+svgSquaresBar.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(20, 0)")
+      .call(squaresYAxis);
+
+svgSquaresBar.append("text")
+     .attr("y", function(d, i) {
+      return height1*1.5 + 40;  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", width*1.5 / 2)
+    .attr("class", "squarestext")
+    .attr("text-align", "center")
+    .style("text-anchor", "middle")
+    .html("");
+
+}
+
+function createStateSquares(data, usstatespop) {
+
+  var usstatessquares = {};
+  for (i in data) {
+    if (usstatessquares[data[i].address.slice(-2)] == null && usstatesdict[data[i].address.slice(-2)] != null && data[i].address.slice(-2) != "DC") {
+      usstatessquares[data[i].address.slice(-2)] = 1;
+    } else if (usstatesdict[data[i].address.slice(-2)] != null && data[i].address.slice(-2) != "DC"){
+      usstatessquares[data[i].address.slice(-2)] += 1;
+    };
+  };
+
+  var squaresortable = [];
+  for (var term in usstatessquares){
+        squaresortable.push([usstatessquares[term], term])
+  };
+  squaresortable.sort(function(a, b) {return a[0] - b[0]}).reverse();
+
+  var squaresScale = d3.scale.linear()
+    .domain([0, d3.entries(usstatessquares).length/2])
+    .range([0, width*2]);
+
+  var colorarray = ["#2ecc71", "#31c27b", "#35ad88", "#36a38b", "#378e8b", "#378084", "#34616f", "#325465", "#2f495a", "#2c3e50"];
+
+  var squaresScaleColor = d3.scale.quantize()
+    .domain([0, d3.max(d3.entries(usstatessquares), function(d) { return d.value; })])
+    // .range([0, 1]);
+    .range(d3.range(10).map(function(i) { return colorarray[i] }));
+
+  var squareselect = svgSquares.selectAll("rect")
+    .data(squaresortable)
+  .enter()
+  .append("rect")
+  .attr("y", function(d, i) {
+      if (i < 25) {
+        return 0;
+      } else {
+        return 30;
+      }
+    })
+    .attr("x", function(d, i) {
+      if (i < 25) {
+        return squaresScale(i);
+      } else {
+        return squaresScale(i-25);
+      }  //Height minus data value
+    })
+    .attr("height", function(d, i) {
+        return 26; //Just the data value
+    })
+    .attr("width", function(d) {
+        return 26; //Just the data value
+    })
+    .attr("fill", function(d, i) {
+        return squaresScaleColor(d[0]); //Just the data value
+    })
+    .on("mouseover", function(d, i){
+      svgSquares.selectAll(".squarestextorig")
+        .html(usstatesdict[d[1]+"toname"]+" has "+numberWithCommas(d[0])+" roadfood-reviewed restaurants.")
+        .attr("text-align", "center");
+
+      // console.log(d);
+
+    })
+    .on("mouseout", function(d, i){
+      svgSquares.selectAll(".squarestextorig")
+        .html("");
+    });
+
+  var squareselecttext = svgSquares.selectAll("text")
+    .data(squaresortable)
+  .enter()
+  .append("text")
+  .attr("y", function(d, i) {
+      if (i < 25) {
+        return 0  + 13;
+      } else {
+        return 30 + 13;
+      }
+    })
+    .attr("x", function(d, i) {
+      if (i < 25) {
+        return squaresScale(i)+13;
+      } else {
+        return squaresScale(i-25)+13;
+      }  //Height minus data value
+    })
+    // .attr("class", "squarestext")
+    .attr("font-size", 12)
+    .attr("font-family", "Helvetica")
+    .attr("fill", "white")
+    .attr("display", "inline-block")
+    .style("text-anchor", "middle")
+    .attr("vertical-align", "middle")
+    .text(function(d, i) {
+        return usstatesdict[usstatesdict[d[1]]]; //Just the data value
+    });
+
+  var interactiveSVGorig = svgSquares.append("text")
+     .attr("y", function(d, i) {
+      return height/2.5 + 15;  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", width)
+    .attr("class", "squarestextorig")
+    .attr("text-align", "center")
+    .style("text-anchor", "middle")
+    .html("");
+
+}
+
+function createStateSquaresPop(data, usstatespop) {
+
+  var squaresScale = d3.scale.linear()
+    .domain([0, d3.entries(usstatespop).length/2])
+    .range([0, width*2]);
+
+  var colorarray = ["#2ecc71", "#31c27b", "#35ad88", "#36a38b", "#378e8b", "#378084", "#34616f", "#325465", "#2f495a", "#2c3e50"];
+
+  var squaresScaleColor = d3.scale.quantize()
+    // .domain([0, d3.max(d3.entries(usstatespop), function(d) { return d.population; })])
+    .domain([0, usstatespop[0].population])
+    // .range([0, 1]);
+    .range(d3.range(10).map(function(i) { return colorarray[i] }));
+  // console.log(squaresScale(1));
+
+  var squareselect = svgSquaresPop.selectAll("rect")
+    .data(usstatespop)
+  .enter()
+  .append("rect")
+  .attr("y", function(d, i) {
+      // console.log(d);
+      if (i < 25) {
+        return 0;
+      } else {
+        return 30;
+      }
+    })
+    .attr("x", function(d, i) {
+      if (i < 25) {
+        return squaresScale(i);
+      } else {
+        return squaresScale(i-25);
+      }  //Height minus data value
+    })
+    .attr("height", function(d, i) {
+        return 26; //Just the data value
+    })
+    .attr("width", function(d) {
+        return 26; //Just the data value
+    })
+    .attr("fill", function(d, i) {
+        // console.log(d.population);
+        return squaresScaleColor(d.population); //Just the data value
+    })
+    .on("mouseover", function(d, i){
+      svgSquaresPop.selectAll(".squarestextpop")
+        .html("There are "+numberWithCommas(d.population)+" people in "+d.state_content+".")
+        .attr("text-align", "center");
+
+      // console.log(d.population);
+
+    })
+    .on("mouseout", function(d, i){
+
+      svgSquaresPop.selectAll(".squarestextpop")
+        .html("");
+    });
+
+  var squareselecttext = svgSquaresPop.selectAll("text")
+    .data(usstatespop)
+    .enter()
+    .append("text")
+    .attr("y", function(d, i) {
+        // console.log(d);
+        if (i < 25) {
+          return 0  + 13;
+        } else {
+          return 30  + 13;
+        }
+      })
+      .attr("x", function(d, i) {
+        if (i < 25) {
+          return squaresScale(i) + 13;
+        } else {
+          return squaresScale(i-25) + 13;
+        }  //Height minus data value
+      })
+      .attr("class", "squarestext")
+      .attr("font-size", 12)
+          .style("text-anchor", "middle")
+      .attr("font-family", "Helvetica")
+      .attr("fill", "white")
+      .text(function(d, i) {
+        return usstatesdict[(d.state_content+"tocode")]; //Just the data value
+    });
+
+    var interactiveSVGpop = svgSquaresPop.append("text")
+     .attr("y", function(d, i) {
+      return height/2.5 + 15;  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", width)
+    .attr("class", "squarestextpop")
+    .attr("text-align", "center")
+    .style("text-anchor", "middle")
+    .html("");
+
+}
+
+function stripSpecialCharactersAndSpace(inputString){
+  var newString = inputString.replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+  newString = newString.replace(/\s/g, '');
+  newString = newString.replace(/['"]+/g, '');
+  newString = newString.replace("@","");
+  return newString;
+}
+
+function calculateAverageValues(data){
+  //console.log(data);
+  var ratingcounter = 0;
+  var numberofreviews = 0;
+  for (i in data) {
+    if (data[i].rating != null) {
+      ratingcounter += data[i].rating;
+      numberofreviews += data[i].review_count;
+    }
+  }
+  console.log("There are " + data.length + " restaurants with an average rating of " + Math.round(ratingcounter/data.length * 100) / 100 + " with an average of " + Math.round(numberofreviews/data.length * 100) / 100 + " reviews per restaurant out of a total of " + numberofreviews + " total reviews.");
+}
+
+function stateid(state, usstatescsv) {
+  for (i in usstatescsv){
+    if (state == usstatescsv[i].code){
+      return usstatescsv[i].id;
+    };
+  };
+}
+
+function createRatingMap1(data, map, usstates) {
+
+  var usstatestoid_prelim = {};
+  for (i in data) {
+    if (usstatestoid_prelim[data[i].address.slice(-2)] == null && data[i].rating != null){
+      usstatestoid_prelim[data[i].address.slice(-2)] = [data[i].rating, 1];
+    } else if (data[i].rating != null) {
+      usstatestoid_prelim[data[i].address.slice(-2)] = [data[i].rating + usstatestoid_prelim[data[i].address.slice(-2)][0], usstatestoid_prelim[data[i].address.slice(-2)][1] + 1];
+    } else {
+      if (usstatestoid_prelim[data[i].address.slice(-2)] == null) {
+        usstatestoid_prelim[data[i].address.slice(-2)] = [0, 1];
+      } else {
+        usstatestoid_prelim[data[i].address.slice(-2)][1] += 1;
+      };
+    };
+  };
+
+  var usstatestoid = {};
+  for (i in Object.keys(usstatestoid_prelim)){
+    // console.log(usstatestoid_prelim[Object.keys(usstatestoid_prelim)[i]][0] / usstatestoid_prelim[Object.keys(usstatestoid_prelim)[i]][1]);
+    usstatestoid[(Object.keys(usstatestoid_prelim))[i]] = usstatestoid_prelim[Object.keys(usstatestoid_prelim)[i]][0] / usstatestoid_prelim[Object.keys(usstatestoid_prelim)[i]][1];
+     // usstatestoid[(Object.keys(usstatestoid_prelim))[i]] = usstatestoid_prelim[Object.keys(usstatestoid_prelim)[i]][1];
+  }
+
+  // console.log(usstatestoid);
+  // console.log(d3.max($.map(usstatestoid, function(value, key) { return value; })));
+  // console.log(_.sortBy(usstatestoid, _.keys(parseInt(_.values(usstatestoid)))).sort(function(a,b){return a - b}));
+
+  // console.log(usstatesdict);
+  // console.log($.map(usstatestoid, function(value, key) { return value; }));
+
+  var projection = d3.geo.albersUsa()
+    .scale(780)
+    .translate([mapwidth / 2, mapheight / 2]);
+
+  var path = d3.geo.path()
+    .projection(projection);
+
+  // var colorarray = ['#f7fcfd','#e5f5f9','#ccece6','#99d8c9','#66c2a4','#41ae76',"#019875",'#238b45', '#006d2c','#00441b'];
+
+  var colorarray = ["#2ecc71", "#31c27b", "#35ad88", "#36a38b", "#378e8b", "#378084", "#34616f", "#325465", "#2f495a", "#2c3e50"];
+
+  var quantize = d3.scale.quantize()
+    .domain([0, 5])
+    // .range([0, 1]);
+    .range(d3.range(10).map(function(i) { return colorarray[i] }));
+
+  // var quantize = d3.scale.quantize()
+  //   .domain([0, d3.max($.map(usstatestoid, function(value, key) { return value; }))])
+  //   .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+
+  // var rateById = d3.map();
+
+  var svg4 = d3.select("#ratingmap").append("svg")
+    .attr("width", mapwidth)
+    .attr("height", mapheight + 50);
+
+  svg4.append("g")
+  .selectAll("path")
+      .data(topojson.feature(map, map.objects.states).features)
+  .enter().append("path")
+    .attr("fill", function(d,i){
+      // return 1;
+      // console.log(usstatestoid[usstatesdict[d.id]]);
+      // console.log(quantize(usstatestoid[usstatesdict[d.id]]));
+      return quantize(usstatestoid[usstatesdict[d.id]]);
+    })
+    // .attr("fill", "#2C3E50")
+    .attr("d", path)
+    .attr("transform", "translate(0," + height / 6 + ")")
+    .on("mouseover", function(d){
+      // console.log(usstatesdict[d.id]);
+      var mapstateid = ".barstate_"+usstatesdict[d.id];
+
+      // svg4.selectAll(mapstateid)
+      //   .attr("stroke", "#3498db")
+      //   .attr("stroke-opacity", 0.3)
+      //   // .attr("opacity", 0.2)
+      //   .attr("fill", "#3498db");
+
+      svg4.selectAll(".map1text")
+         .html(usstatesdict[usstatesdict[d.id]+"toname"]+" restaurants have an average rating of "+Math.round(usstatestoid[usstatesdict[d.id]]*100) / 100+".")
+          .attr("text-align", "center");
+        })
+     .on("mouseout", function(d){
+      var mapstateid = ".barstate_"+usstatesdict[d.id];
+      svg4.selectAll(mapstateid)
+        .attr("fill", "white")
+        .attr("stroke", "white");
+      svg4.selectAll(".map1text")
+        .html("");
+     });
+
+  svg4.append("text")
+     .attr("y", function(d, i) {
+      return mapheight + 40;  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", mapwidth / 2)
+    .attr("class", "map1text")
+    .attr("text-align", "center")
+    .style("text-anchor", "middle")
+    .html("");
+
+// var colorarray = ["#6e7c5a", "#a0b28f", "#d8b8b3", "#b45554", "#760000"].reverse();
+
+var threshold = d3.scale.threshold()
+    .domain([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
+    .range([0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+    // .range([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+
+
+var formatPercent = d3.format(".0%"),
+    formatNumber = d3.format(".0f");
+
+var quantizex = d3.scale.linear()
+    .domain([0, 5])
+    .range([0, 240]);
+
+var quantizeopacity = d3.scale.quantize()
+    .domain([0, 5])
+    .range(d3.range(10).map(function(i) { return colorarray[i] }));
+    // .range([0, 1]);
+
+// var numbertocolor = {"0.2": 3.5, "0.4": 4.0};
+
+var map1xAxis = d3.svg.axis()
+    .scale(quantizex)
+    .orient("bottom")
+    .tickSize(14)
+    .tickValues([0, 1, 2, 3, 4, 5])
+    .tickFormat(function(d) { return d; });
+    // .tickFormat(function(d) { console.log(d); return numbertocolor[d] });
+
+var g = svg4.append("g")
+    .attr("class", "key")
+    .attr("transform", "translate(" + (width) / 2 + "," + height / 4 + ")");
+
+g.selectAll("rect")
+    .data(threshold.range().map(function(colorarray) {
+      var d = threshold.invertExtent(colorarray);
+      // if (d[0] == null) d[0] = quantizex.domain()[0];
+      // if (d[1] == null) d[1] = quantizex.domain()[1];
+      return d;
+    }))
+  .enter().append("rect")
+    // .attr("fill", "#2C3E50")
+    // .attr("opacity", function(d) { return quantizeopacity(d[1]); })
+    .attr("fill", function(d) {return quantizeopacity(d[1]); })
+    .attr("height", 8)
+    .attr("x", function(d) { return quantizex(d[1]); })
+    .attr("width", function(d) { return quantizex(d[1]) - quantizex(d[1]-0.5); });
+    // .style("fill", function(d) { return threshold(d[0]); });
+
+  g.call(map1xAxis).append("text")
+    .attr("class", "caption")
+    .attr("y", -6)
+    .text("Average rating");
+  
+  //console.log(d3.max(usstatestoid, function(d) { console.log(d); return d[1]; }));
+
+  d3.select(self.frameElement).style("height", mapheight + "px");
+}
+
+function createRatingMap2(data, map, usstates, usstatespop) {
+
+  var usstatessquares = {};
+  for (i in data) {
+    if (usstatessquares[data[i].address.slice(-2)] == null && usstatesdict[data[i].address.slice(-2)] != null && data[i].address.slice(-2) != "DC") {
+      usstatessquares[data[i].address.slice(-2)] = 1;
+    } else if (usstatesdict[data[i].address.slice(-2)] != null && data[i].address.slice(-2) != "DC"){
+      usstatessquares[data[i].address.slice(-2)] += 1;
+    };
+  };
+  var populationdict = {};
+  for (i in usstatespop) {
+    populationdict[usstatespop[i].state_content] = usstatespop[i].population;
+  };
+
+  // console.log(usstatessquares);
+
+  var dividedpop = {};
+  for (var term in usstatessquares) {
+    dividedpop[term] = populationdict[usstatesdict[term+"toname"]] / usstatessquares[term];
+  };
+
+  // console.log(dividedpop);
+
+  var squaresortable = [];
+  for (var term in dividedpop){
+        squaresortable.push([dividedpop[term], term])
+  };
+  // squaresortable.sort(function(a, b) {return a[0] - b[0]});
+
+  // console.log(squaresortable);
+  var usstatessquares = [];
+  for (i in squaresortable) {
+    // console.log(squaresortable[i]);
+    usstatessquares[squaresortable[i][1]] = 175007/squaresortable[i][0];
+  };
+
+  // console.log(usstatestoid_prelim);
+  // console.log(usstatessquares);
+
+  // ction(value, key) { return value; }));
+
+  var projection = d3.geo.albersUsa()
+    .scale(780)
+    .translate([mapwidth / 2, mapheight / 2]);
+
+  var path = d3.geo.path()
+    .projection(projection);
+
+  // var colorarray = ['#f7fcfd','#e5f5f9','#ccece6','#99d8c9','#66c2a4','#41ae76',"#019875",'#238b45', '#006d2c','#00441b'];
+
+  var colorarray = ["#2ecc71", "#31c27b", "#35ad88", "#36a38b", "#378e8b", "#378084", "#34616f", "#325465", "#2f495a", "#2c3e50"];
+
+  var quantiledomain = [];
+  for (i in usstatessquares) {
+    quantiledomain.push(usstatessquares[i])
+  };
+  // console.log(quantiledomain);
+
+  var quantize = d3.scale.quantile()
+    .domain(quantiledomain)
+    // .range([0, 1]);
+    .range(d3.range(10).map(function(i) { return colorarray[i] }));
+
+  // var quantize = d3.scale.quantize()
+  //   .domain([0, d3.max($.map(usstatestoid, function(value, key) { return value; }))])
+  //   .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+
+  // var rateById = d3.map();
+
+  var svg4secondmap = d3.select("#ratingmap2").append("svg")
+    .attr("width", mapwidth)
+    .attr("height", mapheight + 50);
+
+  svg4secondmap.append("g")
+  .selectAll("path")
+      .data(topojson.feature(map, map.objects.states).features)
+  .enter().append("path")
+    .attr("fill", function(d,i){
+      // console.log(usstatessquares[usstatesdict[d.id]]);
+      // console.log(usstatestoid[usstatesdict[d.id]]);
+      // console.log(quantize(usstatestoid[usstatesdict[d.id]]));
+      return quantize(usstatessquares[usstatesdict[d.id]]);
+    })
+    // .attr("fill", "#2C3E50")
+    .attr("d", path)
+    .attr("transform", "translate(0," + height / 6 + ")")
+    .on("mouseover", function(d){
+      // console.log(d.id);
+      // console.log(usstatesdict[usstatesdict[d.id]+"toname"]);
+      var mapstateid = ".map2state_"+usstatesdict[d.id];
+
+      svg4secondmap.selectAll(".map2text")
+         .html(usstatesdict[usstatesdict[d.id]+"toname"]+" has one reviewed restaurant per "+numberWithCommas(populationdict[usstatesdict[usstatesdict[d.id]+"toname"]])+" people, or "+Math.round(usstatessquares[usstatesdict[d.id]]*100)/100+" times the national average.")
+          .attr("text-align", "center");
+        })
+     .on("mouseout", function(d){
+      var mapstateid = ".map2state_"+usstatesdict[d.id];
+      svg4secondmap.selectAll(mapstateid)
+        .attr("fill", "white")
+        .attr("stroke", "white");
+      svg4secondmap.selectAll(".map2text")
+        .html("");
+     });
+
+  svg4secondmap.append("text")
+     .attr("y", function(d, i) {
+      return mapheight + 40;  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", mapwidth / 2)
+    .attr("class", "map2text")
+    .attr("text-align", "center")
+    .style("text-anchor", "middle")
+    .html("");
+
+// var colorarray = ["#6e7c5a", "#a0b28f", "#d8b8b3", "#b45554", "#760000"].reverse();
+
+var threshold = d3.scale.threshold()
+    .domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    .range([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+    // .range([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+
+var formatPercent = d3.format(".0%"),
+    formatNumber = d3.format(".0f");
+
+var quantizex = d3.scale.linear()
+    .domain([0, 10])
+    .range([0, 240]);
+
+var quantizeopacity = d3.scale.quantize()
+    .domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    .range(d3.range(10).map(function(i) { return colorarray[i] }));
+    // .range([0, 1]);
+
+// var numbertocolor = {"0.2": 3.5, "0.4": 4.0};
+
+var map1xAxis = d3.svg.axis()
+    .scale(quantizex)
+    .orient("bottom")
+    .tickSize(14)
+    .tickValues([0, 2,  4,  6,  8, 10])
+    .tickFormat(function(d) { if (d != 0) {return d+"0"; } else { return d;}});
+    // .tickFormat(function(d) { console.log(d); return numbertocolor[d] });
+
+var g = svg4secondmap.append("g")
+    .attr("class", "key")
+    .attr("transform", "translate(" + (width) / 2 + "," + height / 4 + ")");
+
+g.selectAll("rect")
+    .data(threshold.range().map(function(colorarray) {
+      var d = threshold.invertExtent(colorarray);
+      if (d[0] == null) d[0] = quantizex.domain()[0];
+      if (d[1] == null) d[1] = quantizex.domain()[1];
+      return d;
+    }))
+  .enter().append("rect")
+    // .attr("fill", "#2C3E50")
+    // .attr("opacity", function(d) { return quantizeopacity(d[1]); })
+    .attr("fill", function(d) {return quantizeopacity(d[1]); })
+    .attr("height", 8)
+    .attr("x", function(d) { return quantizex(d[1]); })
+    .attr("width", function(d) { if (d[1] != 10) {return quantizex(d[1]) - quantizex(d[1]-1); }});
+    // .style("fill", function(d) { return threshold(d[0]); });
+
+  g.call(map1xAxis).append("text")
+    .attr("class", "caption")
+    .attr("y", -6)
+    .text("Percentile");
+  
+  //console.log(d3.max(usstatestoid, function(d) { console.log(d); return d[1]; }));
+
+  d3.select(self.frameElement).style("height", mapheight + "px");
+}
+
+function createBarChartState(data, usstates, state){
+  barchart1datastate = {};
+  for (i in data) {
+    if (data[i].address.slice(-2) != null && usstatesdict[data[i].address.slice(-2)+"toname"] == state){
+    //console.log(data[i].rating);
+      if (barchart1datastate[data[i].rating] == null && data[i].rating != null) {
+        barchart1datastate[data[i].rating] = 1;
+      } else {
+        if (data[i].rating == null) {
+          if (barchart1datastate["N/A"] == null){
+            barchart1datastate["N/A"] = 1;
+          } else {
+            barchart1datastate["N/A"] += 1;
+          }
+        } else {
+          barchart1datastate[data[i].rating] += 1;
+        }
+      }
+    }
+  }
+
+  barchart1data = {};
+  for (i in data) {
+    // if (data[i].address.slice(-2) != null && usstatesdict[data[i].address.slice(-2)+"toname"] == state){
+    //console.log(data[i].rating);
+      if (barchart1data[data[i].rating] == null && data[i].rating != null) {
+        barchart1data[data[i].rating] = 1;
+      } else {
+        if (data[i].rating == null) {
+          if (barchart1data["N/A"] == null){
+            barchart1data["N/A"] = 1;
+          } else {
+            barchart1data["N/A"] += 1;
+          }
+        } else {
+          barchart1data[data[i].rating] += 1;
+        }
+      }
+    // }
+  }
+
+  // console.log(barchart1datastate);
+  // var sortable = [];
+  // for (var term in barchart1data){
+  //       sortable.push([barchart1data[term], term])
+  // };
+  var sortablestate = [];
+  for (var term in barchart1datastate){
+        sortablestate.push([barchart1datastate[term], term])
+  };
+  // sortable.sort(function(a, b) {return a[1] - b[1]});
+  sortablestate.sort(function(a, b) {return a[1] - b[1]});
+
+  // console.log(sortablestate);
+
+
+  // var barscatterscalex = d3.scale.ordinal()
+  //     .range([0, width])
+  //     .domain([0, d3.max(data, function(d) { console.log(d[1]); return d[1]; })]);
+
+
+    // .domain([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]);
+
+  var barscatterscaley2 = d3.scale.linear()
+      .range([height, 0])
+      .domain([0, d3.max(sortablestate, function(d) { return d[0]; })]);
+
+  var barscatteryAxis2 = d3.svg.axis()
+                  .scale(barscatterscaley2)
+                  .ticks(4)
+                  .orient("left");
+
+  // var barscatterxAxis = d3.svg.axis()
+  //                 .scale(barscatterscalex)
+  //                 .orient("bottom");
+
+  var BarxScale = d3.scale.ordinal()
+    .domain(["N/A", 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
+    // .domain(sortable.map(function (d) {return d[1]; }))
+    .rangeRoundBands([0, width/1.5], 0.3);
+
+  var barscatterxAxis2 = d3.svg.axis()
+                  .scale(BarxScale)
+                  .orient("bottom")
+                  .tickSize(0)
+                  .tickPadding(6)
+                  .ticks(10);
+
+    var barchart2state2 = svgbar2.selectAll("rect")
+    .data(["N/A", 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1])
+    // .enter()    
+    // .transition().duration(1000)
+    .attr("y", function(d, i) {
+      return barscatterscaley2(d[0]);  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", function(d, i) {
+        // console.log(d);
+       return BarxScale(d[1]);  //Height minus data value
+    })
+    .attr("height", function(d, i) {
+        // console.log(barscatterscaley(d[0]));
+        return 0; //Just the data value
+    })
+    .attr("width", function(d) {
+        return 14; //Just the data value
+    })
+    .attr("class", "rect-state")
+    .attr("fill", "#019875")
+    .attr("border-radius", "4px");
+
+  var barchart2state = svgbar2.selectAll("rect")
+    .data(sortablestate)
+    .attr("y", function(d, i) {
+      return height;  //Bar width of 20 plus 1 for padding
+    })
+    // .transition().duration(1000)
+    // .enter()
+    // .attr("y", function(d, i) {
+    //   return barscatterscaley2(d[0]);  //Bar width of 20 plus 1 for padding
+    // })
+    .attr("x", function(d, i) {
+        // console.log(d);
+       return BarxScale(d[1]);  //Height minus data value
+    })
+
+    .attr("width", function(d) {
+        return 14; //Just the data value
+    })
+    .transition()
+    .duration(1000)
+    .attr("y", function(d, i) {
+      return barscatterscaley2(d[0]);  //Bar width of 20 plus 1 for padding
+    })
+        .attr("height", function(d, i) {
+        // console.log(barscatterscaley(d[0]));
+        return height - barscatterscaley2(d[0]); //Just the data value
+    })
+    .attr("class", "rect-state")
+    .attr("fill", "#019875")
+    .attr("border-radius", "4px")
+    .attr("z-index", 1);
+
+ 
+    // var bar2 = svg.selectAll("text state")
+    //  .data(sortable)
+    //    .enter()
+    //  .append("text")
+    //  .text(function(d, i) {
+    //       return sortable[i][1];
+    //  })
+    //  .attr("text-anchor", "middle")
+    //  .attr("dominant-baseline", "middle")
+    //  .attr("y", function(d, i) {
+    //     return height1 - 33;
+    //   })
+    // .attr("x", function(d, i) {
+    //       return i*30 + 13;  
+    //   })
+    //  .attr("font-size", "16px")
+    //  .attr("fill", "black");
+
+    d3.select("#barchart2").selectAll(".axis")
+      .remove();
+
+    svgbar2.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(-2, "+height+")")
+      .call(barscatterxAxis2);
+
+    svgbar2.append("g")
+    .attr("class", "axis")
+    // .attr("transform", "translate(-10, 0)")
+    .call(barscatteryAxis2)
+        .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("x", -6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("# of Restaurants");
+
+}
+
+function createBarChart1(data) {
+
+  barchart1data = {};
+  for (i in data) {
+    //console.log(data[i].rating);
+    if (barchart1data[data[i].rating] == null && data[i].rating != null) {
+      barchart1data[data[i].rating] = 1;
+    } else {
+      if (data[i].rating == null) {
+        if (barchart1data["N/A"] == null){
+          barchart1data["N/A"] = 1;
+        } else {
+          barchart1data["N/A"] += 1;
+        }
+      } else {
+        barchart1data[data[i].rating] += 1;
+      }
+    };
+  }
+
+  var sortable = [];
+  for (var term in barchart1data){
+        sortable.push([barchart1data[term], term])
+  };
+  sortable.sort(function(a, b) {return a[1] - b[1]});
+
+  // console.log(sortable);
+
+  // var barscatterscalex = d3.scale.ordinal()
+  //     .range([0, width])
+  //     .domain([0, d3.max(data, function(d) { console.log(d[1]); return d[1]; })]);
+
+  var barscatterscaley = d3.scale.linear()
+      .range([height, 0])
+      .domain([0, d3.max(sortable, function(d) { return d[0]; })]);
+
+  var barscatteryAxis = d3.svg.axis()
+                  .scale(barscatterscaley)
+                  .ticks(4)
+                  .orient("left");
+
+  // var barthreshold = d3.scale.identity()
+  //   .domain([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
+  //   .range([0, width]);
+
+  var BarxScale = d3.scale.ordinal()
+    .domain(["N/A", 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
+    // .domain(sortable.map(function (d) {return d[1]; }))
+    .rangeRoundBands([0, width/1.5], 0.3);
+
+  var barscatterxAxis = d3.svg.axis()
+                  .scale(BarxScale)
+                  .orient("bottom")
+                  .tickSize(0)
+                  .tickPadding(6)
+                  .ticks(10);
+
+  var barchart1 = svg.selectAll("rect")
+      .data(sortable)
+    .enter().append("rect")
+    .attr("y", function(d, i) {
+      return barscatterscaley(d[0]);  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", function(d, i) {
+        // console.log(d);
+      return BarxScale(d[1]);
+       // return i*30;  //Height minus data value
+    })
+    .attr("height", function(d, i) {
+        // console.log(barscatterscaley(d[0]));
+        return height - barscatterscaley(d[0]); //Just the data value
+    })
+    .attr("width", function(d) {
+        return 14; //Just the data value
+    });
+
+    var barchart2 = svgbar2.selectAll("rect")
+      .data(sortable)
+    .enter().append("rect")
+    .attr("y", function(d, i) {
+      return barscatterscaley(d[0]);  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", function(d, i) {
+        // console.log(d);
+      return BarxScale(d[1]);
+       // return i*30;  //Height minus data value
+    })
+    .attr("height", function(d, i) {
+        // console.log(barscatterscaley(d[0]));
+        return height - barscatterscaley(d[0]); //Just the data value
+    })
+    .attr("width", function(d) {
+        return 14; //Just the data value
+    });
+
+    // var bar2 = svg.selectAll("text")
+    //  .data(sortable)
+    //    .enter()
+    //  .append("text")
+    //  .text(function(d, i) {
+    //       return sortable[i][1];
+    //  })
+    //  .attr("text-anchor", "middle")
+    //  .attr("dominant-baseline", "middle")
+    //  .attr("y", function(d, i) {
+    //     return height1 - 33;
+    //   })
+    // .attr("x", function(d, i) {
+    //       return i*30 + 13;  
+    //   })
+    //  .attr("font-size", "16px")
+    //  .attr("fill", "black");
+
+    svgbar2.append("g")
+    .attr("class", "axis")
+    // .attr("transform", "translate(-190, 0)")
+    .call(barscatteryAxis)
+        .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("x", -6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("# of Restaurants");
+
+    svgbar2.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(-2, "+height+")")
+    .call(barscatterxAxis);
+
+    svg.append("g")
+    .attr("class", "axis")
+    // .attr("transform", "translate(-10, 0)")
+    .call(barscatteryAxis)
+        .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("x", -6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("# of Restaurants");;
+
+    svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", "translate(-2, "+height+")")
+    .call(barscatterxAxis);
+}
+
+function createLineGraph1(data, usstatespop) {
+var usstatestoid_prelim = {};
+  for (i in data) {
+    if (usstatestoid_prelim[data[i].address.slice(-2)] == null && data[i].review_count != null){
+      usstatestoid_prelim[data[i].address.slice(-2)] = [data[i].review_count, 1];
+    } else if (data[i].rating != null) {
+      usstatestoid_prelim[data[i].address.slice(-2)] = [data[i].review_count + usstatestoid_prelim[data[i].address.slice(-2)][0], usstatestoid_prelim[data[i].address.slice(-2)][1] + 1];
+    } else {
+      if (usstatestoid_prelim[data[i].address.slice(-2)] == null) {
+        usstatestoid_prelim[data[i].address.slice(-2)] = [0, 1];
+      } else {
+        usstatestoid_prelim[data[i].address.slice(-2)][1] += 1;
+      };
+    };
+  };
+
+  var usstatestoid = {};
+  for (i in Object.keys(usstatestoid_prelim)){
+    // console.log(usstatestoid_prelim[Object.keys(usstatestoid_prelim)[i]][0] / usstatestoid_prelim[Object.keys(usstatestoid_prelim)[i]][1]);
+    usstatestoid[(Object.keys(usstatestoid_prelim))[i]] = usstatestoid_prelim[Object.keys(usstatestoid_prelim)[i]][0] / usstatestoid_prelim[Object.keys(usstatestoid_prelim)[i]][1];
+  }
+
+var x = d3.scale.linear()
+    .range([0, width*1.5]);
+
+var y = d3.scale.pow().exponent(.65)
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom").ticks(5);
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .ticks(4)
+    .outerTickSize(0)
+    .orient("left");
+
+var line = d3.svg.line()
+    .x(function(d, i) { return x(i); })
+    .y(function(d, i) { return y(d.review_count); });
+
+  for (i in data) {
+    if (data[i].review_count == null) {
+      data[i].review_count = 0;
+    }
+  }
+
+//////////////////////////////
+var sort_by;
+
+(function() {
+    // utility functions
+    var default_cmp = function(a, b) {
+            if (a == b) return 0;
+            return a < b ? -1 : 1;
+        },
+        getCmpFunc = function(primer, reverse) {
+            var dfc = default_cmp, // closer in scope
+                cmp = default_cmp;
+            if (primer) {
+                cmp = function(a, b) {
+                    return dfc(primer(a), primer(b));
+                };
+            }
+            if (reverse) {
+                return function(a, b) {
+                    return -1 * cmp(a, b);
+                };
+            }
+            return cmp;
+        };
+
+    // actual implementation
+    sort_by = function() {
+        var fields = [],
+            n_fields = arguments.length,
+            field, name, reverse, cmp;
+
+        // preprocess sorting options
+        for (var i = 0; i < n_fields; i++) {
+            field = arguments[i];
+            if (typeof field === 'string') {
+                name = field;
+                cmp = default_cmp;
+            }
+            else {
+                name = field.name;
+                cmp = getCmpFunc(field.primer, field.reverse);
+            }
+            fields.push({
+                name: name,
+                cmp: cmp
+            });
+        }
+
+        // final comparison function
+        return function(A, B) {
+            var a, b, name, result;
+            for (var i = 0; i < n_fields; i++) {
+                result = 0;
+                field = fields[i];
+                name = field.name;
+
+                result = field.cmp(A[name], B[name]);
+                if (result !== 0) break;
+            }
+            return result;
+        }
+    }
+    }());
+  //////////////////////////////
+
+  console.log(data);
+  stateslist = [];
+  for (i in usstatespop){
+    stateslist.push(usstatespop[i].state_content);
+  }
+  for (i in data){
+    data[i].state = data[i].address.slice(-2)
+  }
+  console.log(stateslist);
+  var trial = data.sort(sort_by('state', {name:'review_count', primer: parseInt, reverse: true}));
+  console.log(trial);
+  linedata = {};
+
+  x.domain(d3.extent(data, function(d, i) { return i; }));
+  y.domain(d3.extent(data, function(d, i) { return d.review_count; }));
+
+  var svg2tip = d3.tip().attr('class', 'd3-tip-svg-2');
+
+  var linebar = svg2.selectAll("rect")
+     .data(data)
+       .enter()
+    .append("rect")
+    .attr("y", function(d, i) {
+      return 0;  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", function(d, i) {
+      // console.log(points[d]);
+      if (i != 0){
+       return x(i) - width / (2*data.length);  //Height minus data value
+      } else {
+        return 0;
+      };
+    })
+    .attr("height", function(d, i) {
+        // console.log(barscatterscaley(d[0]));
+        return height; //Just the data value
+    })
+    .attr("width", function(d, i) {
+      if (i != 0) {
+        return width / data.length; //Just the data value
+      } else {
+        return width / (2*data.length);
+      };
+    })
+    .attr("class", function(d){
+      return "barstate_"+d.address.slice(-2);
+    })
+    .attr("fill", "white")
+    .attr("opacity", 0.3)
+    .attr("stroke", "white 0px")
+    .on("mouseover", function(d){
+      var barstateid = ".barstate_"+d.address.slice(-2);
+
+      svg2.selectAll(barstateid)
+      .attr("stroke", "#3498db")
+      .attr("stroke-opacity", 0.3)
+      .attr("opacity", 0.2)
+      .attr("fill", "#3498db");
+
+      svg2.selectAll(".linegraphtext")
+       .html(usstatesdict[d.address.slice(-2)+"toname"]+" restaurants have on average "+Math.round(usstatestoid[d.address.slice(-2)]*100) / 100+" reviews.")
+        .attr("text-align", "center");
+      })
+     .on("mouseout", function(d){
+      var barstateid = ".barstate_"+d.address.slice(-2);
+      svg2.selectAll(barstateid)
+        .attr("fill", "white")
+        .attr("stroke", "white");
+      svg2.selectAll(".linegraphtext")
+        .html("");
+     });
+
+  svg2.append("text")
+     .attr("y", function(d, i) {
+      return height + 40;  //Bar width of 20 plus 1 for padding
+    })
+    .attr("x", width*1.5 / 2)
+    .attr("class", "linegraphtext")
+    .attr("text-align", "center")
+    .style("text-anchor", "middle")
+    .html("");
+
+  // svg2.append("g")
+  //     .attr("class", "axis")
+  //     .attr("transform", "translate(0," + (height) + ")")
+  //     .call(xAxis);
+
+  svg2.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("x", -6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Number of Reviews");
+
+  svg2.append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("d", line);
+
+}
+
+function createScatterPlot1(data) {
+
+  var scatterscalex = d3.scale.linear()
+      .range([0, width1+40])
+      .domain([0, d3.max(data, function(d) { return d.rating; })]);
+
+  var scatterscaley = d3.scale.pow().exponent(.5)
+      .range([height, 0])
+      .domain([0, d3.max(data, function(d) { return d.review_count; })]);
+
+  var scatterxAxis = d3.svg.axis()
+                  .scale(scatterscalex)
+                  .outerTickSize(0)
+                  .orient("bottom");
+
+  var scatteryAxis = d3.svg.axis()
+                  .scale(scatterscaley)
+                  .ticks(4)
+                  .outerTickSize(0)
+                  .orient("left");
+
+  var svg3tip = d3.tip().attr('class', 'd3-tip');
+
+  svg3.selectAll("circle")
+   .data(data)
+   .enter()
+   .append("circle")
+   .call(svg3tip)
+   .attr("class", function(d) {  return stripSpecialCharactersAndSpace(d.name); })
+   .attr("cx", function(d) {
+      if (d.rating != null){
+        return scatterscalex(d.rating);
+      }
+   })
+   .attr("cy", function(d) {
+      if (d.review_count != null) {
+        return scatterscaley(d.review_count) + 20;
+      }
+   })
+   .attr("r", 3)
+   .attr("opacity", .1)
+   .attr("fill", "#2C3E50")
+   .on("mouseover", function(d){
+      // console.log(d);
+      svg3tip.html(function() { return d.name+" ("+usstatesdict[d.address.slice(-2)+"toname"]+")"});
+      svg3tip.show();
+    })
+   .on("mouseout", function(){
+    svg3tip.hide(svg3tip);
+   });
+
+   // svg3.selectAll("text")
+   // .data(data)
+   // .enter()
+   // .append("text")
+   // .text(function(d) {
+   //      return d.review_count + "," + d.rating;
+   //  })
+   // .attr("x", function(d) {
+   //    if (d.rating != null){
+   //      return scatterscalex(d.rating);
+   //    }
+   // })
+   // .attr("y", function(d) {
+   //    if (d.review_count != null) {
+   //      return scatterscaley(d.review_count) + 20;
+   //    }
+   // });
+
+  svg3.append("g")
+    .attr("class", "axis")
+    // .attr("transform", "translate(" + (width - 20) + ", 0)")
+    .attr("transform", "translate(0, 20)")
+
+    .call(scatteryAxis)
+        .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+            .attr("x", -6)
+      .style("text-anchor", "end")
+      .text("Number of Reviews");;
+
+  svg3.append("g")
+    .call(scatterxAxis)
+    .attr("class", "axis")
+    .attr("transform", "translate(0," + (height + 20) + ")");
+}
+
+</script>
+</body>
+</html>

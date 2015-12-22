@@ -1,0 +1,227 @@
+.rating0{ fill: #bdc3c7 ; }
+
+.rating05{ fill: #ffffb3 ; }
+.rating1{ fill: #bebada ; }
+.rating15{ fill: #e74c3c ; }
+.rating2{ fill: #80b1d3 ; }
+.rating25{ fill: #34495e ; }
+
+.rating3{ fill: #f1c40f ; }
+.rating35{ fill: #9b59b6; }
+.rating4{ fill: #1abc9c ; }
+.rating45{ fill: #2980b9 ; }
+.rating5{ fill: #2fcc71 ; }
+
+.firstinput {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 650px;
+}
+
+#linegraph1 svg, 
+#ratingmap svg,
+#ratingmap2 svg
+{
+	display: inline-block;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+  text-align: center;
+}
+
+#ratingsbreakdown svg {
+  display: inline-block;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0.5em;
+  padding-left: 8em;
+  padding-top: 3em;
+}
+
+.squarecontainer {
+  text-align: center;
+  vertical-align: middle;
+}
+
+#ratingsbreakdown {
+  vertical-align: middle;
+  padding-right: 2em;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#barchart1 svg, 
+#barchart2 svg {
+	padding-left: 2em;
+	padding-top: 1.5em;
+	display: inline-block;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+  text-align: center;
+}
+
+.barcharts {
+    margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+#ratingmap, #ratingmap2 {
+  text-align: center;
+}
+
+#barchart1, 
+#barchart2
+{
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#squares-pop svg, #squares svg {
+  padding-bottom: 1.5em;
+  vertical-align: middle;
+}
+
+#linegraph1 {
+  text-align: center;
+}
+
+#squares-barcompare svg {
+  /*padding: 2em;*/
+  padding-left: 3em;
+  padding-bottom: 4em;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+  
+/*.squarestext {
+  text-align: center;
+  display: inline-block;
+  margin-right: auto;
+  vertical-align: middle;
+  margin-left: auto;
+}*/
+
+.squarescontainer  {
+  text-align: center;
+  position: relative;
+  vertical-align: middle;
+}
+
+#scatterplot1 svg {
+	display: block;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 3em;
+  padding-right: 3em;
+  text-align: center;
+  /*padding-bottom: 3em;*/
+}
+
+.title {
+	font-size: 1.75em;
+	text-align: center;
+	padding: 1.25em;
+	padding-top: 2em;
+	font-weight: 500;
+}
+
+h1 {
+  font-weight: lighter;
+  font-size: 20px;
+  padding: 1em;
+  text-align: center;
+}
+
+.key path {
+  display: none;
+}
+
+.key line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bottombreak {
+  padding: 1em;
+}
+
+/*.states {
+  fill: white;
+  stroke: "#ffdead";
+  stroke-linejoin: round;
+}*/
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: #2C3E50;
+  stroke-width: 1.5px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+q, blockquote {
+  background: #f9f9f9;
+  border-left: 5px solid #2C3E50;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  /*quotes: "\201C" "\201D" "\2018" "\2019";*/
+  /*padding: 1em;*/
+}
+
+.container {
+/*    font-family:"Baskerville"; 
+  font-size:16px;
+  color:#444;*/
+  
+  margin-left: 12%;
+  margin-right: 12%;
+/*  line-height: 1.35em;
+  text-align: justify;
+	text-align: center;*/
+}
+
+html {
+  font-family:"Baskerville"; 
+  font-size:16px;
+  color:#444;
+  
+  margin-left: 12%;
+  margin-right: 12%;
+  line-height: 1.35em;
+  text-align: justify;
+}
+
+p {
+	margin: 1em;
+	text-align: justify;
+}
+
+a:link    {
+	color:#000;
+	background: #ffdead;
+	text-decoration: none;
+	}  /* unvisited link  */
+a:visited {color:#000;}  /* visited link    */
+a:hover   {color:#000;}  /* mouse over link */
+a:active  {color:#000;}
