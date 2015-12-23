@@ -6,11 +6,24 @@
 .rating2{ fill: #80b1d3 ; }
 .rating25{ fill: #34495e ; }
 
-.rating3{ fill: #f1c40f ; }
+.rating3{ fill: #2fcc71 ; }
 .rating35{ fill: #9b59b6; }
 .rating4{ fill: #1abc9c ; }
 .rating45{ fill: #2980b9 ; }
-.rating5{ fill: #2fcc71 ; }
+.rating5{ fill: #f1c40f ; }
+
+/*#8dd3c7
+#ffffb3
+#bebada
+#fb8072
+#80b1d3
+#fdb462
+
+#b3de69
+#fccde5
+#d9d9d9
+#bc80bd
+#ccebc5*/
 
 .firstinput {
   text-align: center;
