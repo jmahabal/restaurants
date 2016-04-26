@@ -1,4 +1,4 @@
-.rating0{ fill: #bdc3c7 ; }
+/*.rating0{ fill: #bdc3c7 ; }
 
 .rating05{ fill: #ffffb3 ; }
 .rating1{ fill: #bebada ; }
@@ -10,7 +10,21 @@
 .rating35{ fill: #9b59b6; }
 .rating4{ fill: #1abc9c ; }
 .rating45{ fill: #2980b9 ; }
-.rating5{ fill: #f1c40f ; }
+.rating5{ fill: #f1c40f ; }*/
+
+.rating5{ fill: #1f78b4 ; }
+
+.rating45{ fill: #a6cee3 ; }
+.rating4{ fill: #33a02c ; }
+.rating35{ fill: #b2df8a ; }
+.rating2{ fill: #c0392b ; }
+.rating15{ fill: #fb9a99 ; }
+
+.rating3{ fill: #6a3d9a ; }
+.rating25{ fill: #cab2d6; }
+.rating1{ fill: #ff7f00 ; }
+.rating05{ fill: #fdbf6f; }
+.rating0{ fill: #ffff99 ; }
 
 .firstinput {
   text-align: center;
