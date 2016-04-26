@@ -291,6 +291,8 @@ var map = "assets/us.json";
 var usstates = "assets/usstates.csv";
 var usstatespop = "assets/statespop.csv";
 
+var colorarray = ['#543005','#8c510a','#bf812d','#dfc27d','#f6e8c3','#c7eae5','#80cdc1','#35978f','#01665e','#003c30'];
+
 $(function(){
 	queue()
 		.defer(d3.json, data)
@@ -692,14 +694,14 @@ function createStateSquaresBar(data, usstatespop) {
 
 
 
-  var colorarray = ["#2ecc71", "#31c27b", "#35ad88", "#36a38b", "#378e8b", "#378084", "#34616f", "#325465", "#2f495a", "#2c3e50"].reverse();
+  var colorarrayreverse = ["#2ecc71", "#31c27b", "#35ad88", "#36a38b", "#378e8b", "#378084", "#34616f", "#325465", "#2f495a", "#2c3e50"].reverse();
 
   // var squarecolorxscale = d3.min(d3.entries(dividedpop));
   // console.log(scaleymax);
   var squaresScaleColor = d3.scale.quantize()
     .domain([0, scaleymax])
     // .range([0, 1]);
-    .range(d3.range(10).map(function(i) { return colorarray[i] }));
+    .range(d3.range(10).map(function(i) { return colorarrayreverse[i] }));
 
   var squareselect = svgSquaresBar.selectAll("rect")
     .data(squaresortable)
